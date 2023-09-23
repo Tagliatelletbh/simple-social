@@ -3,7 +3,7 @@
 
 import axios from "axios";
 import { useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import useFindPost from "@/hooks/find-post-hook";
 import PostCard from "./PostCard";
@@ -18,7 +18,6 @@ export const Posts = () => {
 
 		const response = await axios.post("/api/search", values);
 		setPosts(response.data);
-		console.log(posts);
 	};
 
 	useEffect(() => {
@@ -34,6 +33,7 @@ export const Posts = () => {
 					name={post.name}
 					title={post.title}
 					content={post.content}
+					avatarUrl={post.avatarUrl}
 				/>
 			))}
 		</div>

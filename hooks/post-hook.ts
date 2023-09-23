@@ -1,8 +1,6 @@
 import { create } from "zustand";
 
 interface ConfigPostForm {
-	name: string;
-	setName: (name: string) => void;
 	title: string;
 	setTitle: (title: string) => void;
 	content: string;
@@ -10,8 +8,6 @@ interface ConfigPostForm {
 }
 
 const usePostForm = create<ConfigPostForm>((set) => ({
-	name: "",
-	setName: (name) => set({ name }),
 	title: "",
 	setTitle: (title) => set({ title }),
 	content: "",

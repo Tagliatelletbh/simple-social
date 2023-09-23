@@ -11,12 +11,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "./ui/button";
 import toast from "react-hot-toast";
 
-const PostForm = () => {
-	const { name, setName, title, setTitle, content, setContent } = usePostForm();
-
-	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setName(e.target.value);
-	};
+const PostForm = ({ session }: any) => {
+	const { title, setTitle, content, setContent } = usePostForm();
 
 	const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
@@ -31,7 +27,12 @@ const PostForm = () => {
 
 		const values = { name, title, content };
 
-		const response = await axios.post("/api/post", values);
+		await axios.post("/api/post", {
+			title,
+			content,
+			name: session?.user?.name,
+			avatarUrl: session?.user?.image,
+		});
 
 		toast.success(`Successfully posted ${title}`);
 
@@ -43,17 +44,7 @@ const PostForm = () => {
 	return (
 		<div className="space-y-3">
 			<form onSubmit={handleSubmit}>
-				<div className="grid grid-cols-2 grid-rows-1 gap-1">
-					<div>
-						<Label htmlFor="name">Name</Label>
-						<Input
-							id="name"
-							type="text"
-							value={name}
-							onChange={handleNameChange}
-						/>
-					</div>
-
+				<div className="grid grid-cols-1 grid-rows-1 gap-1 w-[450px]">
 					<div>
 						<Label htmlFor="title">Title</Label>
 						<Input
@@ -63,16 +54,17 @@ const PostForm = () => {
 							onChange={handleTitleChange}
 						/>
 					</div>
+					<div>
+						<Label htmlFor="content">Content</Label>
+						<Textarea
+							id="content"
+							rows={10}
+							value={content}
+							onChange={handleContentChange}
+						/>
+					</div>
 				</div>
-				<div>
-					<Label htmlFor="content">Content</Label>
-					<Textarea
-						id="content"
-						rows={10}
-						value={content}
-						onChange={handleContentChange}
-					/>
-				</div>
+
 				<div className="flex justify-end space-x-2 mt-2">
 					<Link href={"/"}>
 						<Button variant={"destructive"}>Cancel</Button>

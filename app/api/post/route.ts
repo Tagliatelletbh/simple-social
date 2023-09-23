@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 		await connectToDb();
 		const body = await req.json();
 
-		const { name, title, content } = body;
+		const { name, title, content, avatarUrl } = body;
 
 		if (!name || !title || !content) {
 			return new NextResponse("Missing data", {
@@ -19,6 +19,7 @@ export async function POST(req: Request) {
 			name,
 			title,
 			content,
+			avatarUrl,
 		});
 
 		return NextResponse.json(
