@@ -5,7 +5,7 @@ import { ModeToggle } from "@/components/ui/ModeToggle";
 import { Button } from "@/components/ui/button";
 import { NavAvatar } from "@/components/NavAvatar";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions";
 
 export const Navbar = async () => {
 	const session = await getServerSession(authOptions);

@@ -1,4 +1,3 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Posts } from "@/components/Posts";
 import { SearchBar } from "@/components/SearchBar";
 
