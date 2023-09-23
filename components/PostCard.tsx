@@ -25,19 +25,20 @@ const PostCard = ({
 	searchTerm,
 }: PostCardProps) => {
 	return (
-		<Card className="mt-6 p-1">
+		<Card className="mt-6 p-1 flex flex-col">
 			<CardHeader>
 				<CardTitle className="text-lg font-semibold text-center">
 					{title}
 				</CardTitle>
 			</CardHeader>
-			<CardContent className="max-h-40 overflow-auto">
+			<CardContent className="flex-grow max-h-40 overflow-auto flex items-center justify-center">
 				<HighlightContent
 					content={content}
 					highlightWord={searchTerm}
 				/>
 			</CardContent>
-			<CardFooter className="p-2 flex space-x-2">
+			<div className="flex-grow"></div>
+			<CardFooter className="p-2 flex space-x-2 mt-auto">
 				<Avatar>
 					<AvatarImage src={avatarUrl} />
 				</Avatar>

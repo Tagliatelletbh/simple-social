@@ -28,7 +28,11 @@ const HighlightContent: React.FC<HighlightContentProps> = ({
 		);
 	};
 
-	return <div>{highlight(content, highlightWord)}</div>;
+	return (
+		<div>
+			<code>{highlight(content, highlightWord)}</code>
+		</div>
+	);
 };
 
 export default HighlightContent;
